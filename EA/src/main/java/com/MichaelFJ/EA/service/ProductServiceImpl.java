@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
 @Service
 public class ProductServiceImpl implements ProductService{
     @Autowired
@@ -15,6 +14,13 @@ public class ProductServiceImpl implements ProductService{
     public Product saveProduct(Product product) {
         return productRepository.save(product);
     }
+
+
+    @Override
+    public List<Product> getProductsByCat(int cat_id) {
+        return productRepository.findByCatId(cat_id);
+    }
+
 
     @Override
     public List<Product> getAllProducts() {

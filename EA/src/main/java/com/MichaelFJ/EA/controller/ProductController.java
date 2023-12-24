@@ -20,6 +20,11 @@ public class ProductController {
         return "new product added";
     }
 
+    @GetMapping("/cat_id/{cat_id}")
+    List<Product> findByCatId(@PathVariable("cat_id") int cat_id){
+       return productService.getProductsByCat(cat_id);
+    }
+
     @GetMapping("/getAll")
     public List<Product> getAllProducts(){
         return productService.getAllProducts();

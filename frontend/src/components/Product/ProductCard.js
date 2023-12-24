@@ -2,6 +2,7 @@ import React from "react";
 import default_img from "../../images/default.png"
 
 export default function ProductCard({name, description, price}){
+
     return(
         <div className="flex m-2 p-2 w-fit rounded-lg border-2 border-black flex-col ">
             <img src={default_img} className="w-48"></img>

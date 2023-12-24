@@ -3,16 +3,15 @@ import ProductCard from "../Product/ProductCard";
 
 
 
-export default function CategoryRow({name}){
+export default function CategoryRow({name, cat_id}){
 
     const[products, setProducts] = useState([])
 
     useEffect(()=> {
-        fetch("http://localhost:8080/product/getAll")
+        fetch(`http://localhost:8080/product/cat_id/${cat_id}`)
         .then(res => res.json())
         .then((result) => {
             setProducts(result);
-            console.log(result)
         }
     )
     }, [])

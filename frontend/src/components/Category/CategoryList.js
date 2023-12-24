@@ -12,7 +12,6 @@ export default function CategoryList(){
         .then(res => res.json())
         .then((result) => {
             setCategories(result);
-            console.log(result)
         }
     )
     }, [])
@@ -22,6 +21,7 @@ export default function CategoryList(){
             {categories.map(category=>(
                     <CategoryRow
                     name={category.name}
+                    cat_id={category.id}
                     />
                 ))}
                 
