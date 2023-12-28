@@ -5,11 +5,13 @@ import reportWebVitals from './reportWebVitals';
 import {Route, RouterProvider, createBrowserRouter, createRoutesFromElements} from 'react-router-dom';
 import Layout from './Layout';
 import Home from './components/Home/Home';
+import Category from './components/Category/Category';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<Layout/>}>
       <Route path='' element={<Home/>}/>
+      <Route path='category/:cat_id' element={<Category/>}/>
     </Route>
   )
 );

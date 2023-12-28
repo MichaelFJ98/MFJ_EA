@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/category")
@@ -20,6 +21,10 @@ public class CategoryController {
         return "new category added";
     }
 
+    @GetMapping("/getCat/{cat_id}")
+    public Optional<Category> getCategory(@PathVariable("cat_id") int cat_id){
+        return categoryService.getCategory(cat_id);
+    }
     @GetMapping("/getAll")
     public List<Category> getAllCategories(){
         return categoryService.getAllCategories();

@@ -1,4 +1,5 @@
 import React,  {useState, useEffect} from "react";
+import { Link } from "react-router-dom";
 import ProductCard from "../Product/ProductCard";
 
 
@@ -21,16 +22,16 @@ export default function CategoryRow({name, cat_id}){
             <h1 className="text-black text-2xl bg-blue-200 h-min text-center py-2">{name}</h1>
             <div className="h-full bg-red-200 flex flex-row">
                 {products.map(product=>(
-                    <a href="">
+                    <Link to="">
                         <ProductCard
                         name={product.name}
                         description={product.description}
                         price={product.price}
                         />
-                    </a>
+                    </Link>
                     ))}
             </div>
-            <a className="font-bold underline text-right px-2 hover:text-blue-500" href="">See more -></a>
+            <Link className="font-bold underline text-right px-2 hover:text-blue-500" to={`category/${cat_id}`}>See more -></Link>
                 
         </div>
     )
