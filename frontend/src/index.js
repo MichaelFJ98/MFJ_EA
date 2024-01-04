@@ -6,12 +6,14 @@ import {Route, RouterProvider, createBrowserRouter, createRoutesFromElements} fr
 import Layout from './Layout';
 import Home from './components/Home/Home';
 import Category from './components/Category/Category';
+import Login from './components/Login/Login'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<Layout/>}>
       <Route path='' element={<Home/>}/>
       <Route path='category/:cat_id' element={<Category/>}/>
+      <Route path='login' element={<Login/>}/>
     </Route>
   )
 );

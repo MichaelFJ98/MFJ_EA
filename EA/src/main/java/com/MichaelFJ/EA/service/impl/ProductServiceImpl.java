@@ -1,13 +1,14 @@
-package com.MichaelFJ.EA.service;
+package com.MichaelFJ.EA.service.impl;
 
 import com.MichaelFJ.EA.model.Product;
 import com.MichaelFJ.EA.repository.ProductRepository;
+import com.MichaelFJ.EA.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
-public class ProductServiceImpl implements ProductService{
+public class ProductServiceImpl implements ProductService {
     @Autowired
     private ProductRepository productRepository;
     @Override

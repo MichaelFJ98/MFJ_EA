@@ -3,18 +3,18 @@ package com.MichaelFJ.EA.controller;
 import com.MichaelFJ.EA.model.User;
 import com.MichaelFJ.EA.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/v1/user")
 @CrossOrigin
 public class UserController {
 
-    @Autowired
-    private UserService userService;
-    @PostMapping("/add")
-    public String add(@RequestBody User user){
-        userService.saveUser(user);
-        return "new user added";
+    @GetMapping
+    public ResponseEntity<String> sayHello(){
+        return ResponseEntity.ok("Hi user");
     }
+
+
 }
