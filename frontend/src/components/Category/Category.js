@@ -10,24 +10,39 @@ export default function Category(){
     const {cat_id} = useParams();
     const[category, setCategory] = useState({});
     const[products, setProducts] = useState([])
+    const[loading, setLoading] = useState(false)
 
-    useEffect(()=> {
-        fetch(`http://localhost:8080/category/getCat/${cat_id}`)
-        .then(res => res.json())
-        .then((result) => {
-            setCategory(result);
-        });
-    }, {});
-
-    
-
-    useEffect(()=> {
-        fetch(`http://localhost:8080/product/cat_id/${cat_id}`)
-        .then(res => res.json())
-        .then((result) => {
-            setProducts(result);
+    const fetchAPI = async ()=> {
+        setLoading(true);
+        try{
+            const res = await fetch(`http://localhost:8080/category/getCat/${cat_id}`)
+            const data = await res.json();
+            if(data) {setCategory(data)}
+        }catch(error){
+            console.error(error)
         }
-    )
+        setLoading(false);
+    }
+
+    useEffect(()=> {
+        fetchAPI();
+    },{});
+
+
+    const fetchAPI2 = async ()=> {
+        setLoading(true);
+        try{
+            const res = await fetch(`http://localhost:8080/product/cat_id/${cat_id}`)
+            const data = await res.json();
+            if(data) {setProducts(data)}
+        }catch(error){
+            console.error(error)
+        }
+        setLoading(false);
+    }
+
+    useEffect(()=> {
+        fetchAPI2();
     }, [])
 
 
@@ -42,6 +57,5 @@ export default function Category(){
                     />
                     ))}
            </div> 
-            
     )
 }
