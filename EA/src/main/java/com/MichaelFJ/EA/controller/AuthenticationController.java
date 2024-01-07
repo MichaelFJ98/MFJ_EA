@@ -6,16 +6,17 @@ import com.MichaelFJ.EA.dto.SignUpRequest;
 import com.MichaelFJ.EA.dto.SigninRequest;
 import com.MichaelFJ.EA.model.User;
 import com.MichaelFJ.EA.service.AuthenticationService;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 
 @RestController
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:3000", allowedHeaders = "*", allowCredentials = "true")
 public class AuthenticationController {
 
     private final AuthenticationService authenticationService;
@@ -26,8 +27,24 @@ public class AuthenticationController {
     }
 
     @PostMapping("/signin")
-    public ResponseEntity<JwtAuthenticationResponse> signin(@RequestBody SigninRequest signinRequest){
-        return ResponseEntity.ok(authenticationService.signin(signinRequest));
+    public ResponseEntity<JwtAuthenticationResponse> signin(@RequestBody SigninRequest signinRequest, HttpServletResponse response){
+        JwtAuthenticationResponse authenticationResponse = authenticationService.signin(signinRequest);
+
+        Cookie tokenCookie = new Cookie("token", authenticationResponse.getToken());
+        Cookie refreshTokenCookie = new Cookie("refreshToken", authenticationResponse.getRefreshToken());
+
+        tokenCookie.setMaxAge(24 * 60 * 60);
+        refreshTokenCookie.setMaxAge(24 * 60 * 60);
+        tokenCookie.setPath("/");
+        refreshTokenCookie.setPath("/");
+
+
+        response.addCookie(tokenCookie);
+        response.addCookie(refreshTokenCookie);
+
+
+
+        return ResponseEntity.ok(authenticationResponse);
     }
 
     @PostMapping("/refresh")

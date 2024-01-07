@@ -1,18 +1,44 @@
-/*
-  This example requires some changes to your config:
+import React from "react";
+
+import {useNavigate, Link, redirect} from 'react-router-dom';
+
+export default function Login() {
   
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
-export default function Example() {
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) =>{
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const signinData = {
+      email: formData.get("email"),
+      password: formData.get("password")
+    }
+
+
+  fetch("http://localhost:8080/api/v1/auth/signin",{
+            method: "POST",
+            credentials: 'include',
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json"
+            },
+            body:  JSON.stringify(signinData),
+        }).then((response)=> {
+            if(!response.ok){
+              console.log(response.statusText);
+            }
+            else {
+              return response.json()
+            } 
+        }).then(data =>{
+            navigate("/");
+            window.location.reload();
+        })
+        .catch(error =>{
+          console.error("issue with fetch: ", error)
+        })
+    }
+
     return (
       <>
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -28,7 +54,7 @@ export default function Example() {
           </div>
   
           <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form className="space-y-6" action="#" method="POST">
+            <form className="space-y-6" onSubmit={handleSubmit}>
               <div>
                 <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
                   Email address
@@ -50,11 +76,7 @@ export default function Example() {
                   <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
                     Password
                   </label>
-                  <div className="text-sm">
-                    <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
-                      Forgot password?
-                    </a>
-                  </div>
+
                 </div>
                 <div className="mt-2">
                   <input
@@ -80,9 +102,9 @@ export default function Example() {
   
             <p className="mt-10 text-center text-sm text-gray-500">
               No account ? {' '}
-              <a href="#" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+              <Link to={'/register'} relplace className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
                 Click here to create an account
-              </a>
+              </Link>
             </p>
           </div>
         </div>
