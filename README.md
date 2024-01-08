@@ -1,9 +1,9 @@
 # MFJ_EA
 How to start the project
-1.Use Xampp -> start apache server + mysql
-2.Start the backend in Intelliji
-3.Cd to folder ./frontend and use npm install && npm start
-4.Enjoy
+- 1.Use Xampp -> start apache server + mysql
+- 2.Start the backend in Intelliji
+- 3.Cd to folder ./frontend and use npm install && npm start
+- 4.Enjoy
 
 Tutorials/documentation used:
 - https://www.youtube.com/watch?v=jQrExUrNbQE&t=4s&ab_channel=CodeWithProjects (JWT token implmentation, used in project) 
