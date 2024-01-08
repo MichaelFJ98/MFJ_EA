@@ -29,6 +29,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     private final JWTService jwtService;
 
+    //On registration of user, create a user and encode the password. After all this save the user in the database.
+    //signUpRequest is an object that contains all the userinformation from registrationform.
     public User signup(SignUpRequest signUpRequest){
 
         User user = new User();
@@ -42,6 +44,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         return userRepository.save(user);
     }
 
+    //When a user Logs into the website he will send his information through a signinRequest object.
+    //We try to find our user in the database with the incoming information, if the user is found
+    //we create a JWT and refreshtoken, these are send in a jwtAuthenticationResponse object.
     public JwtAuthenticationResponse signin(SigninRequest signinRequest){
         authenticationManager
                 .authenticate(new UsernamePasswordAuthenticationToken(

@@ -11,9 +11,10 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 public class UserController {
 
+    //Custom user API
     @GetMapping
     public ResponseEntity<String> sayHello(){
-        return ResponseEntity.ok("Hi user");
+        return ResponseEntity.ok("Welcome user");
     }
 
 

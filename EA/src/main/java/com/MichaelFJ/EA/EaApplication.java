@@ -9,7 +9,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @SpringBootApplication
-//@SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
 public class EaApplication  implements CommandLineRunner {
 
 	@Autowired
@@ -20,6 +19,7 @@ public class EaApplication  implements CommandLineRunner {
 	}
 
 	public void run(String... args){
+		//Create default admin account
 		User adminAccount = userRepository.findByRole(Role.Admin);
 		if(adminAccount == null){
 			User user = new User();

@@ -35,12 +35,15 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
             return;
         }
+
+        //index at 7 since the token comes after Bearer
         jwt = authHeader.substring(7);
         userEmail = jwtService.extractUsername(jwt);
-
+        // if the useremail is not empty (extracted from jwt) and check if already authenticated
         if(StringUtils.isNotEmpty(userEmail) && SecurityContextHolder.getContext().getAuthentication() == null){
+            //retrieve the userDetails
             UserDetails userDetails = userService.userDetailsService().loadUserByUsername(userEmail);
-
+            //check if token is valid linked to the userdetails
             if(jwtService.isTokenValid(jwt, userDetails)){
                 SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
 

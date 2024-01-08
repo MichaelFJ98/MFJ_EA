@@ -1,7 +1,7 @@
 import React from "react";
 import default_img from "../../images/default.png"
 
-
+//display a singular element of theshopping cart
 export default function ShoppingElement(product){
     return(
         <div className="flex justify-center">

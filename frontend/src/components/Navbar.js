@@ -4,7 +4,7 @@ import { Bars3Icon, XMarkIcon, ShoppingCartIcon } from '@heroicons/react/24/outl
 import { isAuthenticated, signout} from '../services/AuthService'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
-
+//object of all elements of navigation (left side)
 const navigation = [
   { name: 'Dashboard', to: "/"},
 ]
@@ -16,14 +16,14 @@ function classNames(...classes) {
 export default function Example() {
 
   const navigate = useNavigate();
-
+  //get input of search area, on submiting input navigate to new page that displays all product connected to given input
   const getInput = (e) =>{
     e.preventDefault()
     const formData = new FormData(e.currentTarget);
     const inputString = formData.get("textInput")
     navigate(`products/${inputString}`);
 }
-
+  //display shopping cart only if you are logged in
   const shoppingCart = isAuthenticated() ? (
     <Link
       to={"shoppingcart"}
@@ -32,7 +32,7 @@ export default function Example() {
     </Link>
   ) : <div></div>
 
-
+// only display account logout if you are logged in , if notdisplay signin button
   const accountFunctions = isAuthenticated() ? (
     <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
         {shoppingCart}

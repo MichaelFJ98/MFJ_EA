@@ -4,6 +4,7 @@ export default function Category(){
 
     const[name, setName] = useState('')
 
+    //onsubmit create a post method on category add endpoint.
     const handleSubmit = (e) =>{
         e.preventDefault();
         const formData = new FormData(e.currentTarget);

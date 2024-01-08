@@ -5,14 +5,13 @@ import ProductCardBig from "./ProductCardBig";
 
 
 export default function ProductList(){
-
+    //get weblink params
     const {textInput} = useParams()
     const[products, setProducts] = useState([])
     const[loading, setLoading] = useState(false)
 
     const fetchAPI = async ()=> {
         setLoading(true);
-        console.log("deze inpuuut" + textInput)
         try{
             const res = await fetch(`http://localhost:8080/product/getByString/${textInput}`)
             const data = await res.json();
@@ -22,12 +21,12 @@ export default function ProductList(){
         }
         setLoading(false);
     }
-
+    //on change of the textiput, fetch the api again.
     useEffect(()=> {
         fetchAPI();
     },[textInput]);
 
-
+    //display all products 
     return(
         <div className="flex justify-center">
             <div className="flex m-2 p-2  h-fit rounded-lg border-2 border-black font-bold flex-col w-9/12">

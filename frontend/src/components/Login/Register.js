@@ -7,6 +7,7 @@ export default function Register() {
 
   const navigate = useNavigate();
 
+  //on form submit create signupData object and send this through auth/singup endpoint. once data is added to database, reroute to login page
   const handleSubmit = (e) =>{
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -17,7 +18,6 @@ export default function Register() {
       password: formData.get("password")
     }
 
-    console.log({signupData});
 
     fetch("http://localhost:8080/api/v1/auth/signup",{
             method: "POST",

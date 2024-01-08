@@ -4,11 +4,11 @@ import { getShoppingCart , isEmptyCart} from "../../services/ShoppingCartService
 import { Link } from "react-router-dom";
 
 
-
+//display all products in the shoppingcart
 export default function Shoppingcart(){
-
+    //get the shoppinglist
     const products = getShoppingCart();
-
+    //check if the shoppingcart is empty, if it is you won't be able to order products.
     const orderNow = isEmptyCart() ? <div></div> : <Link className="font-bold p-4 w-fit bg-blue-400" to={`../order`}>Order now</Link>
 
     return(

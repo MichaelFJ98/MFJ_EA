@@ -19,9 +19,13 @@ import java.util.function.Function;
 @Service
 public class JWTServiceImpl implements JWTService {
 
+    //create SecretKey
     SecretKey key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+
+    //Encode Key to B64
     String secretString = Encoders.BASE64.encode(key.getEncoded());
 
+    //Generate JWT Token with userdetails
     public String generateToken(UserDetails userDetails){
         return Jwts.builder().setSubject(userDetails.getUsername()).setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
@@ -29,6 +33,7 @@ public class JWTServiceImpl implements JWTService {
                 .compact();
     }
 
+    //generate JWT refresh token
     public String generateRefreshToken(Map<String, Object> extraClaims, UserDetails userDetails){
         return Jwts.builder().setClaims(extraClaims).setSubject(userDetails.getUsername()).setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 604800000))
@@ -52,11 +57,13 @@ public class JWTServiceImpl implements JWTService {
         return Jwts.parserBuilder().setSigningKey(getSigninKey()).build().parseClaimsJws(token).getBody();
     }
 
+    //check if token is valid
     public boolean isTokenValid(String token, UserDetails userDetails){
         final String username = extractUsername(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
 
+    //Check if token is expired
     private boolean isTokenExpired(String token){
         return extractClaim(token, Claims::getExpiration).before(new Date());
     }

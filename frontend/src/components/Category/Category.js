@@ -3,15 +3,16 @@ import { useParams } from "react-router-dom";
 import ProductCardBig from "../Product/ProductCardBig";
 
 
-
+//displays all products in a category
 
 export default function Category(){
-
+    //use params in weblink
     const {cat_id} = useParams();
     const[category, setCategory] = useState({});
     const[products, setProducts] = useState([])
     const[loading, setLoading] = useState(false)
 
+    //fetch category getcat endpoint with given catID to retrieve category
     const fetchAPI = async ()=> {
         setLoading(true);
         try{
@@ -28,7 +29,7 @@ export default function Category(){
         fetchAPI();
     },{});
 
-
+    //fetch products endpoint to get all products related tocategory id
     const fetchAPI2 = async ()=> {
         setLoading(true);
         try{
@@ -45,7 +46,7 @@ export default function Category(){
         fetchAPI2();
     }, [])
 
-
+    
     return(
            <div className="flex flex-col items-center">
             <h1 className="font-bold text-2xl text-center py-4">Alle producten uit de categorie "{category.name}"</h1>

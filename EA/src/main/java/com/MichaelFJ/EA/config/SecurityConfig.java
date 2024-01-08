@@ -29,10 +29,14 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
+        //Set Request permissions on api endpoints, in this code you can see everyone can access the
+        // /api/v1/auth/** route and /category/**", "/product/**", "/filter/** routes.
+        // /api/v1/admin is restricted to only admin acces using the jwt as bearer token
+        // /api/v1/user route is restricted to only user acces using the jwt as bearer token.
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("/api/v1/auth/**").permitAll()
-                        .requestMatchers("/category/**", "/product/**").permitAll()
+                        .requestMatchers("/category/**", "/product/**", "/filter/**").permitAll()
                         .requestMatchers("/api/v1/admin").hasAnyAuthority(Role.Admin.name())
                         .requestMatchers("/api/v1/user").hasAnyAuthority(Role.User.name())
                         .anyRequest().authenticated())
@@ -53,6 +57,7 @@ public class SecurityConfig {
         return authProvider;
     }
 
+    //user Bcrypt as passwordencoder
     @Bean
     public PasswordEncoder passwordEncoder(){
 

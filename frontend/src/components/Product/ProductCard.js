@@ -4,8 +4,9 @@ import { PlusIcon } from '@heroicons/react/24/outline'
 import { addItemToShoppingCart } from "../../services/ShoppingCartService";
 import { isAuthenticated } from "../../services/AuthService";
 
+//displays a product 
 export default function ProductCard({product}){
-
+    //if the user is logged in add a "addtocart button" on the productcard
     const addToCart = isAuthenticated() ?(
                         <button onClick={() => { addItemToShoppingCart(product)}}>
                             <PlusIcon className="bg-green-400 rounded-full w-8 h-8 "></PlusIcon>

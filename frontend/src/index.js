@@ -11,7 +11,7 @@ import Register from './components/Login/Register.js'
 import Shoppingcart from './components/Shoppingcart/Shoppingcart.js';
 import Order from './components/Order/Order.js';
 import ProductList from './components/Product/ProductList.js';
-
+//routing of the website
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<Layout/>}>

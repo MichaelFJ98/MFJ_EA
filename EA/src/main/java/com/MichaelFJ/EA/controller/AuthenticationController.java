@@ -30,15 +30,18 @@ public class AuthenticationController {
     public ResponseEntity<JwtAuthenticationResponse> signin(@RequestBody SigninRequest signinRequest, HttpServletResponse response){
         JwtAuthenticationResponse authenticationResponse = authenticationService.signin(signinRequest);
 
+        // create cookies for the JWT
         Cookie tokenCookie = new Cookie("token", authenticationResponse.getToken());
         Cookie refreshTokenCookie = new Cookie("refreshToken", authenticationResponse.getRefreshToken());
 
+        //give a maxage of 1 day and set the path to defaultpath
         tokenCookie.setMaxAge(24 * 60 * 60);
         refreshTokenCookie.setMaxAge(24 * 60 * 60);
         tokenCookie.setPath("/");
         refreshTokenCookie.setPath("/");
 
 
+        //add cookies to the HttpResponseServlet
         response.addCookie(tokenCookie);
         response.addCookie(refreshTokenCookie);
 

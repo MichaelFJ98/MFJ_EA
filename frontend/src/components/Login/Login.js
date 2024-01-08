@@ -6,6 +6,7 @@ export default function Login() {
   
   const navigate = useNavigate();
 
+  // on submit of form create a object with signinData and send this trough postmethod to auth endpoint/signin once send reroute to dashboard
   const handleSubmit = (e) =>{
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
