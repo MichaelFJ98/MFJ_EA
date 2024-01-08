@@ -10,4 +10,6 @@ public interface ProductService {
 
     public List<Product> getProductsByCat(int cat_id);
     public List<Product> getAllProducts();
+
+    public List<Product> getProductsByString(String textInput);
 }

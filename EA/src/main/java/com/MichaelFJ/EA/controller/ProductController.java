@@ -25,6 +25,11 @@ public class ProductController {
        return productService.getProductsByCat(cat_id);
     }
 
+    @GetMapping("/getByString/{textInput}")
+    List<Product> findByString(@PathVariable("textInput") String textInput){
+        return productService.getProductsByString(textInput);
+    }
+
     @GetMapping("/getAll")
     public List<Product> getAllProducts(){
         return productService.getAllProducts();

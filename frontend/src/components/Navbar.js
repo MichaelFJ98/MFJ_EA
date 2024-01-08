@@ -3,6 +3,7 @@ import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon, ShoppingCartIcon } from '@heroicons/react/24/outline'
 import { isAuthenticated, signout} from '../services/AuthService'
 import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const navigation = [
   { name: 'Dashboard', to: "/"},
@@ -13,6 +14,15 @@ function classNames(...classes) {
 }
 
 export default function Example() {
+
+  const navigate = useNavigate();
+
+  const getInput = (e) =>{
+    e.preventDefault()
+    const formData = new FormData(e.currentTarget);
+    const inputString = formData.get("textInput")
+    navigate(`products/${inputString}`);
+}
 
   const shoppingCart = isAuthenticated() ? (
     <Link
@@ -125,7 +135,21 @@ export default function Example() {
                         {item.name}
                       </Link>
                     ))}
+
+                    <div className=" w-80 bg-slate-400 flex items-center p-2 rounded-lg">
+                      <form onSubmit={getInput}>
+                        <div className='flex flex-row'>
+                          <input className="mx-2 px-2 rounded-lg"type="text" placeholder="Search..." name="textInput" id="textInput" />
+                          <button className="px-2 bg-blue-300 rounded-lg"type="submit">
+                            Search
+                          </button>
+                        </div>
+                        
+                      </form> 
+                    </div>
                   </div>
+
+                  
                 </div>
               </div>
                 {accountFunctions}
