@@ -14,17 +14,18 @@ function classNames(...classes) {
 
 export default function Example() {
 
+  const shoppingCart = isAuthenticated() ? (
+    <Link
+      to={"shoppingcart"}
+      className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white ">
+      <ShoppingCartIcon className="h-6 w-6" aria-hidden="true" />
+    </Link>
+  ) : <div></div>
 
 
   const accountFunctions = isAuthenticated() ? (
     <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                <Link
-                  to={"shoppingcart"}
-                  className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white "
-                >
-                  <ShoppingCartIcon className="h-6 w-6" aria-hidden="true" />
-                </Link>
-
+        {shoppingCart}
     <Menu as="div" className="relative ml-3">
       <div>
         <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">

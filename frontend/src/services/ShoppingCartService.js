@@ -1,5 +1,8 @@
 import { json } from "react-router-dom";
 
+export function getShoppingCart(){
+  return JSON.parse(window.sessionStorage.getItem("Shoppingcart"));
+}
 
 // export function deleteItemFromShoppingCart(itemName){
 
@@ -25,7 +28,7 @@ import { json } from "react-router-dom";
 
 export function addItemToShoppingCart(item){
   //Retrieve sessionShoppingCart
-  const sessionSC = JSON.parse(window.sessionStorage.getItem("Shoppingcart"));
+  const sessionSC = getShoppingCart();
 
   //check if sessionShoppingcart contains the same object that is being added to the shoppingcart
   const containsItem = sessionSC.find(element => 
