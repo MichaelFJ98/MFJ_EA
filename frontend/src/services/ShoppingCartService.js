@@ -4,6 +4,17 @@ export function getShoppingCart(){
   return JSON.parse(window.sessionStorage.getItem("Shoppingcart"));
 }
 
+export function isEmptyCart(){
+  if(getShoppingCart() == 0){
+    return true;
+  }
+  return false;
+}
+
+export function clearShoppingCart(){
+  window.sessionStorage.setItem("Shoppingcart", JSON.stringify([]));
+}
+
 // export function deleteItemFromShoppingCart(itemName){
 
 //   const sessionSC = JSON.parse(sessionStorage.getItem("Shoppingcart"));

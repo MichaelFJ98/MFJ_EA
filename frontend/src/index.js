@@ -9,6 +9,7 @@ import Category from './components/Category/Category.js';
 import Login from './components/Login/Login.js'
 import Register from './components/Login/Register.js'
 import Shoppingcart from './components/Shoppingcart/Shoppingcart.js';
+import Order from './components/Order/Order.js';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -17,6 +18,7 @@ const router = createBrowserRouter(
       <Route path='login' element={<Login/>}/>
       <Route path='register' element={<Register/>}/>
       <Route path='shoppingcart' element={<Shoppingcart/>}/>
+      <Route path='order' element={<Order/>}/>
       <Route path='category/:cat_id' element={<Category/>}/>
     </Route>
   )
