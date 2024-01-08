@@ -51,9 +51,7 @@ export default function Category(){
             <h1 className="font-bold text-2xl text-center py-4">Alle producten uit de categorie "{category.name}"</h1>
             {products.map(product=>(
                     <ProductCardBig
-                        name={product.name}
-                        description={product.description}
-                        price={product.price}
+                        product={product}
                     />
                     ))}
            </div> 

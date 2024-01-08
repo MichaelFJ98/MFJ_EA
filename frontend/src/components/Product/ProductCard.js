@@ -2,9 +2,15 @@ import React from "react";
 import default_img from "../../images/default.png"
 import { PlusIcon } from '@heroicons/react/24/outline'
 import { addItemToShoppingCart } from "../../services/ShoppingCartService";
+import { isAuthenticated } from "../../services/AuthService";
 
 export default function ProductCard({product}){
 
+    const addToCart = isAuthenticated() ?(
+                        <button onClick={() => { addItemToShoppingCart(product)}}>
+                            <PlusIcon className="bg-green-400 rounded-full w-8 h-8 "></PlusIcon>
+                        </button>
+                    ) : <div></div>
 
     return(
         <div className="flex m-2 p-2 w-fit rounded-lg border-2 border-black flex-col ">
@@ -16,9 +22,7 @@ export default function ProductCard({product}){
                     <h1 className="text-red-600 font-bold">€{product.price}</h1>
                 </div>
                 <div>
-                    <button onClick={() => { addItemToShoppingCart(product)}}>
-                        <PlusIcon className="bg-green-400 rounded-full w-8 h-8 "></PlusIcon>
-                    </button>
+                    {addToCart}
                 </div>
             </div>
         </div>
