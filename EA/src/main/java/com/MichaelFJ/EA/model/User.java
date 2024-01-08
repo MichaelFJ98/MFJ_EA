@@ -1,5 +1,6 @@
 package com.MichaelFJ.EA.model;
 
+import com.MichaelFJ.EA.model.Enum.Role;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;

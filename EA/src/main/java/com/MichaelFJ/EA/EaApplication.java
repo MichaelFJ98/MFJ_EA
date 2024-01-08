@@ -1,13 +1,12 @@
 package com.MichaelFJ.EA;
 
-import com.MichaelFJ.EA.model.Role;
+import com.MichaelFJ.EA.model.Enum.Role;
 import com.MichaelFJ.EA.model.User;
 import com.MichaelFJ.EA.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @SpringBootApplication
 //@SpringBootApplication(exclude = {SecurityAutoConfiguration.class})

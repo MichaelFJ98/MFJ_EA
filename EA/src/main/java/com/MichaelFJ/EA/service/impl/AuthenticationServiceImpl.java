@@ -4,7 +4,7 @@ import com.MichaelFJ.EA.dto.JwtAuthenticationResponse;
 import com.MichaelFJ.EA.dto.RefreshTokenRequest;
 import com.MichaelFJ.EA.dto.SignUpRequest;
 import com.MichaelFJ.EA.dto.SigninRequest;
-import com.MichaelFJ.EA.model.Role;
+import com.MichaelFJ.EA.model.Enum.Role;
 import com.MichaelFJ.EA.model.User;
 import com.MichaelFJ.EA.repository.UserRepository;
 import com.MichaelFJ.EA.service.AuthenticationService;

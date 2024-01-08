@@ -1,6 +1,6 @@
 package com.MichaelFJ.EA.repository;
 
-import com.MichaelFJ.EA.model.Role;
+import com.MichaelFJ.EA.model.Enum.Role;
 import com.MichaelFJ.EA.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

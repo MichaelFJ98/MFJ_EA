@@ -1,4 +1,4 @@
-package com.MichaelFJ.EA.model;
+package com.MichaelFJ.EA.model.Enum;
 
 public enum Role {
     User,
